@@ -1,0 +1,467 @@
+<pre><font color="#26A269"><b>student@softlab-Veriton-M4665G</b></font>:<font color="#12488B"><b>~</b></font>$ ssh 24mca51@192.168.20.100
+ssh: connect to host 192.168.20.100 port 22: No route to host
+<font color="#26A269"><b>student@softlab-Veriton-M4665G</b></font>:<font color="#12488B"><b>~</b></font>$ ssh 24mca51@192.168.20.100
+24mca51@192.168.20.100&apos;s password: 
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-127-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Mon Feb 17 01:16:59 PM IST 2025
+
+  System load:  0.3056640625       Temperature:           46.0 C
+  Usage of /:   24.0% of 97.87GB   Processes:             620
+  Memory usage: 14%                Users logged in:       19
+  Swap usage:   0%                 IPv4 address for eno1: 192.168.20.100
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+81 updates can be applied immediately.
+25 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Tue Feb 11 13:15:47 2025 from 192.168.20.27
+<font color="#26A269"><b>24mca51@mcaserver</b></font>:<font color="#12488B"><b>~</b></font>$ mysql -u 24mca51 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 34
+Server version: 8.0.40-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type &apos;help;&apos; or &apos;\h&apos; for help. Type &apos;\c&apos; to clear the current input statement.
+
+mysql&gt; show databases;
++--------------------+
+| Database           |
++--------------------+
+| 24mca51            |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql&gt; use 24mca51
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql&gt; show tables
+    -&gt; ;
++-------------------+
+| Tables_in_24mca51 |
++-------------------+
+| course            |
+| department        |
+| employee          |
+| orders            |
+| persons           |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql&gt; desc epm ployee
+    -&gt; ;
+ERROR 1146 (42S02): Table &apos;24mca51.epm&apos; doesn&apos;t exist
+mysql&gt; desc employee;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| employeenum  | int          | NO   | PRI | NULL    |       |
+| employeename | varchar(250) | YES  |     | NULL    |       |
+| dob          | date         | YES  |     | NULL    |       |
+| address      | varchar(250) | YES  |     | NULL    |       |
+| mobilenum    | varchar(50)  | YES  |     | NULL    |       |
+| deptnum      | int          | YES  | MUL | NULL    |       |
+| salary       | int          | YES  |     | NULL    |       |
+| designation  | varchar(50)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql&gt; desc department;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| deptnum  | int          | NO   | PRI | NULL    |       |
+| deptname | varchar(250) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+mysql&gt; 
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (1,&apos;vaishnav&apos;,&apos;2001-11-24&apos;,&apos;kannampallimekkathil&apos;,&apos;9074162649&apos;,1,10000,&apos;teacher&apos;),(1,&apos;vaishnamysql&gt; 7^[[C^C&apos;,&apos;kannampallimekkathil&apos;,&apos;9074162649&apos;,1,10000,&apos;teacher&apos;),(1,&apos;vaishnav&apos;,&apos;2001-11-24&apos;,&apos;kannampallimekkathil&apos;,&apos;9074162649&apos;,1,10000,&apos;teacher&apos;)
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (1,&apos;vaishnav&apos;,&apos;2001-11-24&apos;,&apos;kannampallimekkathil&apos;,&apos;9074162649&apos;,1,10000,&apos;teacher&apos;);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`24mca51`.`employee`, CONSTRAINT `FK_deptnum` FOREIGN KEY (`deptnum`) REFERENCES `department` (`deptnum`))
+mysql&gt; INSERT INTO department (deptnum,deptname) VALUES (1,&apos;mca&apos;),(2,&apos;cse&apos;),(3,&apos;mech&apos;),(4,&apos;civil&apos;),(5,&apos;barch&apos;),(6,&apos;ece&apos;),(7,&apos;eee&apos;),(8,&apos;robo&apos;),(9,&apos;mtechCvili&apos;),(10,&apos;mtechcse&apos;);
+Query OK, 10 rows affected (0.05 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql&gt; show table department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;department&apos; at line 1
+mysql&gt; show tables department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;department&apos; at line 1
+mysql&gt; show department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;department&apos; at line 1
+mysql&gt; select TABLE department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;TABLE department&apos; at line 1
+mysql&gt; SELECT TABLE department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;TABLE department&apos; at line 1
+mysql&gt; SELECT TABLE department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;TABLE department&apos; at line 1
+mysql&gt; SELECT * department;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;department&apos; at line 1
+mysql&gt; SELECT * FROM  department;
++---------+------------+
+| deptnum | deptname   |
++---------+------------+
+|       1 | mca        |
+|       2 | cse        |
+|       3 | mech       |
+|       4 | civil      |
+|       5 | barch      |
+|       6 | ece        |
+|       7 | eee        |
+|       8 | robo       |
+|       9 | mtechCvili |
+|      10 | mtechcse   |
++---------+------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (1,&apos;vaishnav&apos;,&apos;2001-11-24&apos;,&apos;kannampallimekkathil&apos;,&apos;9074162649&apos;,1,10000,&apos;teacher&apos;);
+Query OK, 1 row affected (0.04 sec)
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  10000 | teacher     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (2,&apos;vishnu&apos;,&apos;2001-10-11&apos;,&apos;vellachaluvila puthenveedu&apos;,&apos;9023493049&apos;,2,10000,&apos;asstprofessor&apos;),; 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&apos; at line 1
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (2,&apos;vishnu&apos;,&apos;2001-10-11&apos;,&apos;vellachaluvila puthenveedu&apos;,&apos;9023493049&apos;,2,10000,&apos;asstprofessor&apos;);
+Query OK, 1 row affected (0.07 sec)
+
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES (2,&apos;vishnu&apos;,&apos;2001-10-11&apos;,&apos;vellachaluvila puthenveedu&apos;,&apos;9023493049&apos;,2,10000,&apos;asstprofessor&apos;);^C
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES 
+    -&gt; (2,&apos;shreyas&apos;,&apos;2001-10-09&apos;,&apos;vellachaluvila putawb vargsvygwhenveedu&apos;,&apos;9023497565&apos;,2,10000,&apos;asstprofessor&apos;),
+    -&gt; (3,&apos;vishnu&apos;,&apos;2001-10-12&apos;,&apos;asuvbliu&apos;,&apos;9023493049&apos;,3,10000,&apos;asstprofessor&apos;),
+    -&gt; (4,&apos;jishnu&apos;,&apos;2001-10-13&apos;,&apos;iauseyr vgyal&apos;,&apos;9023493045&apos;,4,10000,&apos;asstprofessor&apos;),
+    -&gt; (5,&apos;joel&apos;,&apos;2001-10-14&apos;,&apos;ueyrtgibvylie&apos;,&apos;9023493043&apos;,5,10000,&apos;asstprofessor&apos;),
+    -&gt; (6,&apos;sidharth&apos;,&apos;2001-10-15&apos;,&apos;ioawatvuo &apos;,&apos;9023493042&apos;,6,10000,&apos;asstprofessor&apos;),
+    -&gt; (7,&apos;vinayak&apos;,&apos;2001-10-16&apos;,&apos;niuertsui&apos;,&apos;9023493041&apos;,7,10000,&apos;asstprofessor&apos;),
+    -&gt; (8,&apos;aravind&apos;,&apos;2001-10-17&apos;,&apos;vellachaluvila puthtresvyenveedu&apos;,&apos;9023493053&apos;,8,10000,&apos;asstprofessor&apos;),
+    -&gt; (9,&apos;aneesh&apos;,&apos;2001-10-18&apos;,&apos;vellachaluvila puthenveeduwaevawt&apos;,&apos;9023493065&apos;,9,10000,&apos;asstprofessor&apos;),
+    -&gt; (10,&apos;rony&apos;,&apos;2001-10-19&apos;,&apos;vellachaluvila putaswvtawethenveedu&apos;,&apos;9023493086&apos;,10,10000,&apos;asstprofessor&apos;),;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&apos; at line 10
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES  (2,&apos;shreyas&apos;,&apos;2001-10-09&apos;,&apos;vellachaluvila putawb vargsvygwhenveedu&apos;,&apos;9023497565&apos;,2,10000,&apos;asstprofessor&apos;), (3,&apos;vishnu&apos;,&apos;2001-10-12&apos;,&apos;asuvbliu&apos;,&apos;9023493049&apos;,3,10000,&apos;asstprofessor&apos;), (4,&apos;jishnu&apos;,&apos;2001-10-13&apos;,&apos;iauseyr vgyal&apos;,&apos;9023493045&apos;,4,10000,&apos;asstprofessor&apos;), (5,&apos;joel&apos;,&apos;2001-10-14&apos;,&apos;ueyrtgibvylie&apos;,&apos;9023493043&apos;,5,10000,&apos;asstprofessor&apos;), (6,&apos;sidharth&apos;,&apos;2001-10-15&apos;,&apos;ioawatvuo &apos;,&apos;9023493042&apos;,6,10000,&apos;asstprofessor&apos;), (7,&apos;vinayak&apos;,&apos;2001-10-16&apos;,&apos;niuertsui&apos;,&apos;9023493041&apos;,7,10000,&apos;asstprofessor&apos;), (8,&apos;aravind&apos;,&apos;2001-10-17&apos;,&apos;vellachaluvila puthtresvyenveedu&apos;,&apos;9023493053&apos;,8,10000,&apos;asstprofessor&apos;), (9,&apos;aneesh&apos;,&apos;2001-10-18&apos;,&apos;vellachaluvila puthenveeduwaevawt&apos;,&apos;9023493065&apos;,9,10000,&apos;asstprofessor&apos;), (10,&apos;rony&apos;,&apos;2001-10-19&apos;,&apos;vellachaluvila putaswvtawethenveedu&apos;,&apos;9023493086&apos;,10,10000,&apos;asstprofessor&apos;);
+ERROR 1062 (23000): Duplicate entry &apos;2&apos; for key &apos;employee.PRIMARY&apos;
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                    | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil       | 9074162649 |       1 |  10000 | teacher       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu | 9023493049 |       2 |  10000 | asstprofessor |
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; INSERT INTO employee (employeenum,employeename,dob,address,mobilenum,deptnum,salary,designation) VALUES 
+    -&gt; (3,&apos;vishnu&apos;,&apos;2001-10-12&apos;,&apos;asuvbliu&apos;,&apos;9023493049&apos;,3,10000,&apos;asstprofessor&apos;),
+    -&gt; (4,&apos;jishnu&apos;,&apos;2001-10-13&apos;,&apos;iauseyr vgyal&apos;,&apos;9023493045&apos;,4,10000,&apos;asstprofessor&apos;),
+    -&gt; (5,&apos;joel&apos;,&apos;2001-10-14&apos;,&apos;ueyrtgibvylie&apos;,&apos;9023493043&apos;,5,10000,&apos;asstprofessor&apos;),
+    -&gt; (6,&apos;sidharth&apos;,&apos;2001-10-15&apos;,&apos;ioawatvuo &apos;,&apos;9023493042&apos;,6,10000,&apos;asstprofessor&apos;),
+    -&gt; (7,&apos;vinayak&apos;,&apos;2001-10-16&apos;,&apos;niuertsui&apos;,&apos;9023493041&apos;,7,10000,&apos;asstprofessor&apos;),
+    -&gt; (8,&apos;aravind&apos;,&apos;2001-10-17&apos;,&apos;vellachaluvila puthtresvyenveedu&apos;,&apos;9023493053&apos;,8,10000,&apos;asstprofessor&apos;),
+    -&gt; (9,&apos;aneesh&apos;,&apos;2001-10-18&apos;,&apos;vellachaluvila puthenveeduwaevawt&apos;,&apos;9023493065&apos;,9,10000,&apos;asstprofessor&apos;),
+    -&gt; (10,&apos;rony&apos;,&apos;2001-10-19&apos;,&apos;vellachaluvila putaswvtawethenveedu&apos;,&apos;9023493086&apos;,10,10000,&apos;asstprofessor&apos;);
+Query OK, 8 rows affected (0.05 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  10000 | teacher       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |  10000 | asstprofessor |
+|           3 | vishnu       | 2001-10-12 | asuvbliu                            | 9023493049 |       3 |  10000 | asstprofessor |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |  10000 | asstprofessor |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |  10000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |  10000 | asstprofessor |
+|           7 | vinayak      | 2001-10-16 | niuertsui                           | 9023493041 |       7 |  10000 | asstprofessor |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |  10000 | asstprofessor |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |  10000 | asstprofessor |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; select employeenum,wmployeename FROM department WHERE deptno=2;
+ERROR 1054 (42S22): Unknown column &apos;employeenum&apos; in &apos;field list&apos;
+mysql&gt; select employeenum,employeename FROM department WHERE deptno=2;
+ERROR 1054 (42S22): Unknown column &apos;employeenum&apos; in &apos;field list&apos;
+mysql&gt; select employeenum,employeename FROM employee WHERE deptno=2;
+ERROR 1054 (42S22): Unknown column &apos;deptno&apos; in &apos;where clause&apos;
+mysql&gt; select employeenum,employeename FROM employee WHERE deptnum=2;
++-------------+--------------+
+| employeenum | employeename |
++-------------+--------------+
+|           2 | vishnu       |
++-------------+--------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select employeenum,employeename,deptno,designstion,salary FROM employee order by salary desc;
+ERROR 1054 (42S22): Unknown column &apos;deptno&apos; in &apos;field list&apos;
+mysql&gt; select employeenum,employeename,deptnum,designstion,salary FROM employee order by salary desc;
+ERROR 1054 (42S22): Unknown column &apos;designstion&apos; in &apos;field list&apos;
+mysql&gt; select employeenum,employeename,deptnum,designastion,salary FROM employee order by salary desc;
+ERROR 1054 (42S22): Unknown column &apos;designastion&apos; in &apos;field list&apos;
+mysql&gt; select employeenum,employeename,deptnum,designation,salary FROM employee order by salary desc;
++-------------+--------------+---------+---------------+--------+
+| employeenum | employeename | deptnum | designation   | salary |
++-------------+--------------+---------+---------------+--------+
+|           1 | vaishnav     |       1 | teacher       |  10000 |
+|           2 | vishnu       |       2 | asstprofessor |  10000 |
+|           3 | vishnu       |       3 | asstprofessor |  10000 |
+|           4 | jishnu       |       4 | asstprofessor |  10000 |
+|           5 | joel         |       5 | asstprofessor |  10000 |
+|           6 | sidharth     |       6 | asstprofessor |  10000 |
+|           7 | vinayak      |       7 | asstprofessor |  10000 |
+|           8 | aravind      |       8 | asstprofessor |  10000 |
+|           9 | aneesh       |       9 | asstprofessor |  10000 |
+|          10 | rony         |      10 | asstprofessor |  10000 |
++-------------+--------------+---------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql&gt; UPDATE employee SET salary=3000 WHERE deptnum=1;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=2000 WHERE deptnum=2;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=1000 WHERE deptnum=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=4000 WHERE deptnum=4;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=5000 WHERE deptnum=5;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=6000 WHERE deptnum=6;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=7000 WHERE deptnum=7;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=8000 WHERE deptnum=8;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; UPDATE employee SET salary=9000 WHERE deptnum=9;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |   3000 | teacher       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor |
+|           3 | vishnu       | 2001-10-12 | asuvbliu                            | 9023493049 |       3 |   1000 | asstprofessor |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor |
+|           7 | vinayak      | 2001-10-16 | niuertsui                           | 9023493041 |       7 |   7000 | asstprofessor |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | asstprofessor |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; select employeenum,employeename,deptnum,designation,salary FROM employee order by salary desc;
++-------------+--------------+---------+---------------+--------+
+| employeenum | employeename | deptnum | designation   | salary |
++-------------+--------------+---------+---------------+--------+
+|          10 | rony         |      10 | asstprofessor |  10000 |
+|           9 | aneesh       |       9 | asstprofessor |   9000 |
+|           8 | aravind      |       8 | asstprofessor |   8000 |
+|           7 | vinayak      |       7 | asstprofessor |   7000 |
+|           6 | sidharth     |       6 | asstprofessor |   6000 |
+|           5 | joel         |       5 | asstprofessor |   5000 |
+|           4 | jishnu       |       4 | asstprofessor |   4000 |
+|           1 | vaishnav     |       1 | teacher       |   3000 |
+|           2 | vishnu       |       2 | asstprofessor |   2000 |
+|           3 | vishnu       |       3 | asstprofessor |   1000 |
++-------------+--------------+---------+---------------+--------+
+10 rows in set (0.00 sec)
+
+mysql&gt; select employeenum,employeename FROM employee WHERE salary&gt;2000 and salary&lt;5000;
++-------------+--------------+
+| employeenum | employeename |
++-------------+--------------+
+|           1 | vaishnav     |
+|           4 | jishnu       |
++-------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select designation FROM employee WHERE designaton is distinct;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;distinct&apos; at line 1
+mysql&gt; select designation FROM employee WHERE designaton  distinct;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;distinct&apos; at line 1
+mysql&gt; select designation FROM employee WHERE designaton  DISTINCT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;DISTINCT&apos; at line 1
+mysql&gt; select designation FROM employee WHERE designaton IS DISTINCT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;DISTINCT&apos; at line 1
+mysql&gt; select distinct designation FROM employee;
++---------------+
+| designation   |
++---------------+
+| teacher       |
+| asstprofessor |
++---------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; UPDATE employee SET designation=&apos;manager&apos; WHERE deptnum=1;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select distinct designation FROM employee;
++---------------+
+| designation   |
++---------------+
+| manager       |
+| asstprofessor |
++---------------+
+2 rows in set (0.01 sec)
+
+mysql&gt; UPDATE employee SET salary=45000 WHERE designation=&apos;manager&apos;;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor |
+|           3 | vishnu       | 2001-10-12 | asuvbliu                            | 9023493049 |       3 |   1000 | asstprofessor |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor |
+|           7 | vinayak      | 2001-10-16 | niuertsui                           | 9023493041 |       7 |   7000 | asstprofessor |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | asstprofessor |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; UPDATE employee SET employeename=&apos;john&apos; WHERE deptnum=3;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; DELETE ROW FROM employee WHERE employeename=&apos;john&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;ROW FROM employee WHERE employeename=&apos;john&apos;&apos; at line 1
+mysql&gt; DELETE ROW FROM TABLE employee WHERE employeename=&apos;john&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;ROW FROM TABLE employee WHERE employeename=&apos;john&apos;&apos; at line 1
+mysql&gt; UPDATE employee SET mobilenum=&apos;9093745934&apos; WHERE employeename=&apos;john&apos;;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor |
+|           7 | vinayak      | 2001-10-16 | niuertsui                           | 9023493041 |       7 |   7000 | asstprofessor |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | asstprofessor |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; UPDATE employee SET designation=&apos;computerassitant&apos; WHERE deptnum=9;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |
+|           7 | vinayak      | 2001-10-16 | niuertsui                           | 9023493041 |       7 |   7000 | asstprofessor    |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor    |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; ALTER TABLE employee DELETE WHERE salary=&apos;7000&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;DELETE WHERE salary=&apos;7000&apos;&apos; at line 1
+mysql&gt; DELETE *FROM employee WHERE salary=&apos;7000&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;*FROM employee WHERE salary=&apos;7000&apos;&apos; at line 1
+mysql&gt; DELETE * FROM employee WHERE salary=&apos;7000&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;* FROM employee WHERE salary=&apos;7000&apos;&apos; at line 1
+mysql&gt; DELETE ROW FROM employee WHERE salary=&apos;7000&apos;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;ROW FROM employee WHERE salary=&apos;7000&apos;&apos; at line 1
+mysql&gt; DELETE FROM employee WHERE salary=&apos;7000&apos;;
+Query OK, 1 row affected (0.05 sec)
+
+mysql&gt; SELECT * FROM  employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor    |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+9 rows in set (0.00 sec)
+
+mysql&gt; select employeename,mobilenum FROM employee where employee LIKE&apos;a%&apos;;
+ERROR 1054 (42S22): Unknown column &apos;employee&apos; in &apos;where clause&apos;
+mysql&gt; select employeename,mobilenum FROM employee where employeename LIKE&apos;a%&apos;;
++--------------+------------+
+| employeename | mobilenum  |
++--------------+------------+
+| aravind      | 9023493053 |
+| aneesh       | 9023493065 |
++--------------+------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; 
+</pre>
