@@ -1,0 +1,322 @@
+<pre>mysql&gt; desec employee
+    -&gt; ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;desec employee&apos; at line 1
+mysql&gt; desc employee;
+ERROR 1046 (3D000): No database selected
+mysql&gt; use 24mca51;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql&gt; desc employee;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| employeenum  | int          | NO   | PRI | NULL    |       |
+| employeename | varchar(250) | YES  |     | NULL    |       |
+| dob          | date         | YES  |     | NULL    |       |
+| address      | varchar(250) | YES  |     | NULL    |       |
+| mobilenum    | varchar(50)  | YES  |     | NULL    |       |
+| deptnum      | int          | YES  | MUL | NULL    |       |
+| salary       | int          | YES  |     | NULL    |       |
+| designation  | varchar(50)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql&gt; show employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;employee&apos; at line 1
+mysql&gt; show tableemployee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;tableemployee&apos; at line 1
+mysql&gt; show table employee; 
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;employee&apos; at line 1
+mysql&gt; show tables employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;employee&apos; at line 1
+mysql&gt; show tables;
++-------------------+
+| Tables_in_24mca51 |
++-------------------+
+| course            |
+| department        |
+| employee          |
+| orders            |
+| persons           |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql&gt; show  employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;employee&apos; at line 1
+mysql&gt; SHOW employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;employee&apos; at line 1
+mysql&gt; select *from employee
+    -&gt; ;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 |  10000 | asstprofessor    |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+
+9 rows in set (0.00 sec)
+
+mysql&gt; select *from employee where employeename like&quot;%a&quot;;
+Empty set (0.00 sec)
+
+mysql&gt; select *from employee where employeename like&quot;a&quot;;
+Empty set (0.00 sec)
+
+mysql&gt; select *from employee where employeename like&quot;a%&quot;;
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+| employeenum | employeename | dob        | address                           | mobilenum  | deptnum | salary | designation      |
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu  | 9023493053 |       8 |   8000 | asstprofessor    |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt | 9023493065 |       9 |   9000 | computerassitant |
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select *from employee where employeename where salary&gt;20000 and employeename like &quot;???&quot;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where salary&gt;20000 and employeename like &quot;???&quot;&apos; at line 1
+mysql&gt; select *from employee where employeename where salary&gt;20000 and employeename like &quot;???%&quot;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where salary&gt;20000 and employeename like &quot;???%&quot;&apos; at line 1
+mysql&gt; select *from employee where employeename where salary&gt;20000 and employeename like &quot;___%&quot;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where salary&gt;20000 and employeename like &quot;___%&quot;&apos; at line 1
+mysql&gt; select *from employee where employeename where salary&gt;=20000 and employeename like &quot;___%&quot;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where salary&gt;=20000 and employeename like &quot;___%&quot;&apos; at line 1
+mysql&gt; select *from employee where salary&gt;=20000 and employeename like &quot;___%&quot;;
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  45000 | manager     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select *from employee where salary&gt;=20000 and employeename like &quot;???%&quot;;
+Empty set (0.00 sec)
+
+mysql&gt; select *from employee where salary&gt;=20000 and employeename like &quot;___%&quot;;
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  45000 | manager     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select *from employee employeenum = 1,2,6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;= 1,2,6&apos; at line 1
+mysql&gt; select *from employee employeenum = &quot;1&quot;,&quot;2&quot;,&quot;6&quot;;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;= &quot;1&quot;,&quot;2&quot;,&quot;6&quot;&apos; at line 1
+mysql&gt; select *from employee employeenum = 1 AND 2 AND 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;= 1 AND 2 AND 6&apos; at line 1
+mysql&gt; select *from employee employeenum = 1,2 AND 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;= 1,2 AND 6&apos; at line 1
+mysql&gt; select *from employee employeenum = 1,2and 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;= 1,2and 6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1,2and 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,2and 6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1,2, 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,2, 6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1,2,6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,2,6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1,and6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,and6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1,2and6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,2and6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1and2and6;
+ERROR 1054 (42S22): Unknown column &apos;1and2and6&apos; in &apos;where clause&apos;
+mysql&gt; select *from employee where employeenum = 1 and 2 and 6;
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  45000 | manager     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select *from employee where employeenum = 1 2 6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;2 6&apos; at line 1
+mysql&gt; select *from employee where employeenum = 1 ,2 ,6;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;,2 ,6&apos; at line 1
+mysql&gt; select *from employee where employeenum in (1,2,6);
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                    | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil       | 9074162649 |       1 |  45000 | manager       |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu | 9023493049 |       2 |   2000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                  | 9023493042 |       6 |   6000 | asstprofessor |
++-------------+--------------+------------+----------------------------+------------+---------+--------+---------------+
+3 rows in set (0.00 sec)
+
+mysql&gt; select employeename,employeenum *from employee where salary&gt;120000 and 300000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;from employee where salary&gt;120000 and 300000&apos; at line 1
+mysql&gt; select employeename,employeenum *from employee where salary&gt;120000 and &lt;300000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;from employee where salary&gt;120000 and &lt;300000&apos; at line 1
+mysql&gt; select employeename,employeenum from employee where salary&gt;120000 and &lt;300000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&lt;300000&apos; at line 1
+mysql&gt; select employeename,employeenum from employee where salary&gt;120000 and &lt;300000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;&lt;300000&apos; at line 1
+mysql&gt; update employee set salary=150000 where employeenum=10;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql&gt; select employeename,employeenum from employee where salary between 120000 and300000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;and300000&apos; at line 1
+mysql&gt; select employeename,employeenum from employee where salary between 120000 and 300000;
++--------------+-------------+
+| employeename | employeenum |
++--------------+-------------+
+| rony         |          10 |
++--------------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select *from employee where designation is asstprofessor or computerassistant;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;asstprofessor or computerassistant&apos; at line 1
+mysql&gt; select *from employee where designation = asstprofessor or computerassistant;
+ERROR 1054 (42S22): Unknown column &apos;asstprofessor&apos; in &apos;where clause&apos;
+mysql&gt; select *from employee where designation = &quot;asstprofessor&quot; or &quot;computerassistant&quot;;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation   |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 | 150000 | asstprofessor |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+---------------+
+7 rows in set, 1 warning (0.00 sec)
+
+mysql&gt; select *from employee where designation = &quot;manager&quot; or &quot;computerassistant&quot;;
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  45000 | manager     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql&gt; select *from employee where designation in (&quot;manager&quot;,&quot;computerassistant&quot;);
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+| employeenum | employeename | dob        | address              | mobilenum  | deptnum | salary | designation |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil | 9074162649 |       1 |  45000 | manager     |
++-------------+--------------+------------+----------------------+------------+---------+--------+-------------+
+1 row in set (0.00 sec)
+
+mysql&gt; select *from employee where designation in (&quot;manager&quot;,&quot;computerassitant&quot;);
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+| employeenum | employeename | dob        | address                           | mobilenum  | deptnum | salary | designation      |
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil              | 9074162649 |       1 |  45000 | manager          |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt | 9023493065 |       9 |   9000 | computerassitant |
++-------------+--------------+------------+-----------------------------------+------------+---------+--------+------------------+
+2 rows in set (0.00 sec)
+
+mysql&gt; select count(*),deptname from  where designation in (&quot;manager&quot;,&quot;computerassitant&quot;);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;where designation in (&quot;manager&quot;,&quot;computerassitant&quot;)&apos; at line 1
+mysql&gt; select count(*),deptname from  department group by deptname;
++----------+------------+
+| count(*) | deptname   |
++----------+------------+
+|        1 | mca        |
+|        1 | cse        |
+|        1 | mech       |
+|        1 | civil      |
+|        1 | barch      |
+|        1 | ece        |
+|        1 | eee        |
+|        1 | robo       |
+|        1 | mtechCvili |
+|        1 | mtechcse   |
++----------+------------+
+10 rows in set (0.00 sec)
+
+mysql&gt; select avg(salary),deptname from  department group by deptname;
+ERROR 1054 (42S22): Unknown column &apos;salary&apos; in &apos;field list&apos;
+mysql&gt; select avg(salary),deptname from  employee group by deptnum;
+ERROR 1054 (42S22): Unknown column &apos;deptname&apos; in &apos;field list&apos;
+mysql&gt; select avg(salary),deptnum from  employee group by deptnum;
++-------------+---------+
+| avg(salary) | deptnum |
++-------------+---------+
+|  45000.0000 |       1 |
+|   2000.0000 |       2 |
+|   1000.0000 |       3 |
+|   4000.0000 |       4 |
+|   5000.0000 |       5 |
+|   6000.0000 |       6 |
+|   8000.0000 |       8 |
+|   9000.0000 |       9 |
+| 150000.0000 |      10 |
++-------------+---------+
+9 rows in set (0.00 sec)
+
+mysql&gt; select sum(salary),deptnum from  employee group by deptnum;
++-------------+---------+
+| sum(salary) | deptnum |
++-------------+---------+
+|       45000 |       1 |
+|        2000 |       2 |
+|        1000 |       3 |
+|        4000 |       4 |
+|        5000 |       5 |
+|        6000 |       6 |
+|        8000 |       8 |
+|        9000 |       9 |
+|      150000 |      10 |
++-------------+---------+
+9 rows in set (0.00 sec)
+
+mysql&gt; select max(salary),min(salary) from  employee group by deptnum;
++-------------+-------------+
+| max(salary) | min(salary) |
++-------------+-------------+
+|       45000 |       45000 |
+|        2000 |        2000 |
+|        1000 |        1000 |
+|        4000 |        4000 |
+|        5000 |        5000 |
+|        6000 |        6000 |
+|        8000 |        8000 |
+|        9000 |        9000 |
+|      150000 |      150000 |
++-------------+-------------+
+9 rows in set (0.00 sec)
+
+mysql&gt; 
+mysql&gt; select avg(salary),deptnum from employee where deptnum&lt;&gt; &apos;5&apos; group by deptnum;
++-------------+---------+
+| avg(salary) | deptnum |
++-------------+---------+
+|  45000.0000 |       1 |
+|   2000.0000 |       2 |
+|   1000.0000 |       3 |
+|   4000.0000 |       4 |
+|   6000.0000 |       6 |
+|   8000.0000 |       8 |
+|   9000.0000 |       9 |
+| 150000.0000 |      10 |
++-------------+---------+
+8 rows in set (0.00 sec)
+
+mysql&gt; select avg(salary),deptnum from employee group by deptnum having deptnum!=5 and avg(salary)&gt;20000 ordered by avg(salary) ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;ordered by avg(salary) ASC&apos; at line 1
+mysql&gt; 
+mysql&gt; select avg(salary),deptnum from employee group by deptnum having deptnum!=&apos;5&apos; and avg(salary)&gt;20000 ordered by avg(salary) ASC;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &apos;ordered by avg(salary) ASC&apos; at line 1
+mysql&gt; select avg(salary),deptnum from employee group by deptnum having deptnum!=&apos;5&apos; and avg(salary)&gt;20000 order by avg(salary) ASC;
++-------------+---------+
+| avg(salary) | deptnum |
++-------------+---------+
+|  45000.0000 |       1 |
+| 150000.0000 |      10 |
++-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql&gt; 
+
+</pre>
