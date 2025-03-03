@@ -1,0 +1,825 @@
+student@softlab-Veriton-M4665G:~$ ssh 24mca51@192.168.20.100
+^[[A^[[B^C
+student@softlab-Veriton-M4665G:~$ 
+student@softlab-Veriton-M4665G:~$ ssh 24mca51@192.168.20.100
+24mca51@192.168.20.100's password: 
+Welcome to Ubuntu 22.04.4 LTS (GNU/Linux 5.15.0-127-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+  System information as of Mon Mar  3 01:17:47 PM IST 2025
+
+  System load:  0.560546875        Temperature:           47.0 C
+  Usage of /:   24.1% of 97.87GB   Processes:             750
+  Memory usage: 17%                Users logged in:       36
+  Swap usage:   0%                 IPv4 address for eno1: 192.168.20.100
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+81 updates can be applied immediately.
+25 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+Failed to connect to https://changelogs.ubuntu.com/meta-release-lts. Check your Internet connection or proxy settings
+
+
+Last login: Tue Feb 25 13:22:20 2025 from 192.168.20.27
+24mca51@mcaserver:~$ mysql -u 24mca51 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 37
+Server version: 8.0.40-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databasas
+    -> show databases;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'databasas
+show databases' at line 1
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| 24mca51            |
+| information_schema |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+mysql> use 24mca51;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_24mca51 |
++-------------------+
+| course            |
+| department        |
+| employee          |
+| orders            |
+| persons           |
+| student           |
++-------------------+
+6 rows in set (0.00 sec)
+
+mysql> create table Employee;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> create table Employee (id varchar(5),deptid int(2),name varchar(15), designation varchar(15),basic decimal(10,2),gender varchar(1));
+Query OK, 0 rows affected, 1 warning (0.35 sec)
+
+mysql> insert into employees (id, dept_id, name, designation, basic, gender) values
+    -> (101, 1, 'ram', 'typist', 2000, 'm'),
+    -> (102, 2, 'arun', 'analyst', 6000, 'm'),
+    -> (121, 1, 'ruby', 'typist', 2010, 'f'),
+    -> (156, 3, 'mary', 'manager', 4500, 'f'),
+    -> (123, 2, 'mridula', 'analyst', 6000, 'f'),
+    -> (114, 4, 'menon', 'clerk', 1500, 'm'),
+    -> (115, 4, 'tim', 'clerk', 1500, 'm'),
+    -> (127, 2, 'kiran', 'manager', 4000, 'm');
+ERROR 1146 (42S02): Table '24mca51.employees' doesn't exist
+mysql> insert into Employee (id, deptid, name, designation, basic, gender) values (101, 1, 'ram', 'typist', 2000, 'm'), (102, 2, 'arun', 'analyst', 6000, 'm'), (121, 1, 'ruby', 'typist', 2010, 'f'), (156, 3, 'mary', 'manager', 4500, 'f'), (123, 2, 'mridula', 'analyst', 6000, 'f'), (114, 4, 'menon', 'clerk', 1500, 'm'), (115, 4, 'tim', 'clerk', 1500, 'm'), (127, 2, 'kiran', 'manager', 4000, 'm');
+Query OK, 8 rows affected (0.06 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc Employee;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | varchar(5)    | YES  |     | NULL    |       |
+| deptid      | int           | YES  |     | NULL    |       |
+| name        | varchar(15)   | YES  |     | NULL    |       |
+| designation | varchar(15)   | YES  |     | NULL    |       |
+| basic       | decimal(10,2) | YES  |     | NULL    |       |
+| gender      | varchar(1)    | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> select *fromm Employee
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fromm Employee' at line 1
+mysql> select *fromm Employee
+    -> select *fromm ^Cployee
+mysql> select *from Employee
+    -> ;
++------+--------+---------+-------------+---------+--------+
+| id   | deptid | name    | designation | basic   | gender |
++------+--------+---------+-------------+---------+--------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |
++------+--------+---------+-------------+---------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select designation;from Employee
+ERROR 1054 (42S22): Unknown column 'designation' in 'field list'
+    -> select designation from Employee
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Employee
+select designation from Employee' at line 1
+mysql> select designation from Employee;
++-------------+
+| designation |
++-------------+
+| typist      |
+| analyst     |
+| typist      |
+| manager     |
+| analyst     |
+| clerk       |
+| clerk       |
+| manager     |
++-------------+
+8 rows in set (0.01 sec)
+
+mysql> select designation from Employee unique;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'unique' at line 1
+mysql> select designation from Employee UNIQUE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UNIQUE' at line 1
+mysql> select DISTINCT designation from Employee ;
++-------------+
+| designation |
++-------------+
+| typist      |
+| analyst     |
+| manager     |
+| clerk       |
++-------------+
+4 rows in set (0.00 sec)
+
+mysql> select count (DISTINCT designation) from Employee ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DISTINCT designation) from Employee' at line 1
+mysql> select count(DISTINCT designation)as no_of_dif_des\ from Employee ;
+ERROR: 
+Unknown command '\ '.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '\ from Employee' at line 1
+mysql> select count(DISTINCT designation)as no_of_dif_des from Employee ;
++---------------+
+| no_of_dif_des |
++---------------+
+|             4 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> select 
+    ->     id, 
+    ->     name, 
+    ->     designation as desig, 
+    ->     dept_id, 
+    ->     basic, 
+    ->     basic * 0.075 as da, 
+    ->     basic * 0.10 as hra, 
+    ->     basic + (basic * 0.075) + (basic * 0.10) as net_sal
+    -> from employees;
+ERROR 1146 (42S02): Table '24mca51.employees' doesn't exist
+mysql> select
+    ->     id,
+    ->     name,
+    ->     designation as desig,
+    ->     dept_id,
+    ->     basic,
+    ->     basic * 0.075 as da,
+    ->     basic * 0.10 as hra,
+    ->     basic + (basic * 0.075) + (basic * 0.10) as net_sal
+    -> from employee;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select     id,     name,     designation as desig,     deptid,     basic,     basic * 0.075 as da,     basic * 0.10 as hra,     basic + (basic * 0.075) + (basic * 0.10) as net_sal from employee;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select     id,     name,     designation as desig,     deptid,     basic,     basic * 0.075 as da,     basic * 0.10 as hra,     basic + (basic * 0.075) + (basic * 0.10) as net_sal from employee;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select id, name, designation as desig, deptid, basic, basic * 0.075 as da, basic * 0.10 as hra, basic + (basic * 0.075) + (basic * 0.10) as net_sal from employee;
+ERROR 1054 (42S22): Unknown column 'id' in 'field list'
+mysql> select id, name, designation as desig, deptid, basic, basic * 0.075 as da, basic * 0.10 as hra, basic + (basic * 0.075) + (basic * 0.10) as net_sal from SE    ->     basic,mployee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '->     basic,mployee' at line 1
+mysql>     ->     basic,
+    -> select id, name, designation as desig, deptid, basic, basic * 0.075 as da, basic * 0.10 as hra, basic + (basic * 0.075) + (basic * 0.10) as net_sal from Employee;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '->     basic,
+select id, name, designation as desig, deptid, basic, basic * 0.07' at line 1
+mysql> select id, name, designation as desig, deptid, basic, basic * 0.075 as da, basic * 0.10 as hra, basic + (basic * 0.075) + (basic * 0.10) as net_sal from Employee;
++------+---------+---------+--------+---------+-----------+----------+------------+
+| id   | name    | desig   | deptid | basic   | da        | hra      | net_sal    |
++------+---------+---------+--------+---------+-----------+----------+------------+
+| 101  | ram     | typist  |      1 | 2000.00 | 150.00000 | 200.0000 | 2350.00000 |
+| 102  | arun    | analyst |      2 | 6000.00 | 450.00000 | 600.0000 | 7050.00000 |
+| 121  | ruby    | typist  |      1 | 2010.00 | 150.75000 | 201.0000 | 2361.75000 |
+| 156  | mary    | manager |      3 | 4500.00 | 337.50000 | 450.0000 | 5287.50000 |
+| 123  | mridula | analyst |      2 | 6000.00 | 450.00000 | 600.0000 | 7050.00000 |
+| 114  | menon   | clerk   |      4 | 1500.00 | 112.50000 | 150.0000 | 1762.50000 |
+| 115  | tim     | clerk   |      4 | 1500.00 | 112.50000 | 150.0000 | 1762.50000 |
+| 127  | kiran   | manager |      2 | 4000.00 | 300.00000 | 400.0000 | 4700.00000 |
++------+---------+---------+--------+---------+-----------+----------+------------+
+8 rows in set (0.00 sec)
+
+mysql> select max(basic) as max_salary_female 
+    -> from employees 
+    -> where gender = 'f';
+ERROR 1146 (42S02): Table '24mca51.employees' doesn't exist
+mysql> select max(basic) as max_salary_female  from Employee  where gender = 'f';
++-------------------+
+| max_salary_female |
++-------------------+
+|           6000.00 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> alter table employee 
+    -> add column manager_id int;
+Query OK, 0 rows affected (0.23 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table Employee  add column manager_id int;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> -- Set manager_id as NULL for employee with ID 101
+mysql> update employee set manager_id = null where id = 101;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> 
+mysql> -- Set manager_id as 101 for employees with IDs 102, 121, and 156
+mysql> update employee set manager_id = 101 where id in (102, 121, 156);
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> 
+mysql> -- Set manager_id as 102 for employees with IDs 123, 114, and 115
+mysql> update employee set manager_id = 102 where id in (123, 114, 115);
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> 
+mysql> -- Set manager_id as 121 for employee with ID 127
+mysql> update employee set manager_id = 121 where id = 127;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> update employee set manager_id = null where id = 101;
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> update Employee set manager_id = null where id = 101;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> -- Set manager_id as 101 for Employee with IDs 102, 121, and 156
+mysql> update Employee set manager_id = 101 where id in (102, 121, 156);
+Query OK, 3 rows affected (0.05 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update Employee set manager_id = 102 where id in (123, 114, 115);
+Query OK, 3 rows affected (0.04 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> update Employee set manager_id = 121 where id = 127;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select *fromm Employee
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'fromm Employee' at line 1
+mysql> select *from Employee
+    -> ;
++------+--------+---------+-------------+---------+--------+------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id |
++------+--------+---------+-------------+---------+--------+------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 |
++------+--------+---------+-------------+---------+--------+------------+
+8 rows in set (0.00 sec)
+
+mysql> ^Balter table employee 
+    -> add column joining_date date;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'alter table employee 
+add column joining_date date' at line 1
+mysql> alter table employee  add column joining_date date;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee 
+    -> set joining_date = case 
+    ->     when id = 101 then '2015-06-10'
+    ->     when id = 102 then '2018-09-15'
+    ->     when id = 121 then '2016-04-20'
+    ->     when id = 156 then '2019-11-30'
+    ->     when id = 123 then '2017-07-25'
+    ->     when id = 114 then '2020-01-10'
+    ->     when id = 115 then '2021-03-05'
+    ->     when id = 127 then '2014-12-01'
+    -> end
+    -> where id in (101, 102, 121, 156, 123, 114, 115, 127);
+ERROR 1054 (42S22): Unknown column 'id' in 'where clause'
+mysql> update Employee  set joining_date = case      when id = 101 then '2015-06-10'     when id = 102 then '2018-09-15'     when id = 121 then '2016-04-20'     when id = 156 then '2019-11-30'     when
+id = 123 then '2017-07-25'     when id = 114 then '2020-01-10'     when id = 115 then '2021-03-05'
+  when id = 127 then '2014-12-01' end where id in (101, 102, 121, 156, 123, 114, 115, 127);
+ERROR 1054 (42S22): Unknown column 'joining_date' in 'field list'
+mysql> alter table employee 
+    -> add column joining_date date;
+ERROR 1060 (42S21): Duplicate column name 'joining_date'
+mysql> alter table Employee  add column joining_date date;
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update Employee  set joining_date = case      when id = 101 then '2015-06-10'     when id = 102 then '2018-09-15'     when id = 121 then '2016-04-20'     when id = 156 then '2019-11-30'     when
+id = 123 then '2017-07-25'     when id = 114 then '2020-01-10'     when id = 115 then '2021-03-05'
+  when id = 127 then '2014-12-01' end where id in (101, 102, 121, 156, 123, 114, 115, 127);
+Query OK, 8 rows affected (0.05 sec)
+Rows matched: 8  Changed: 8  Warnings: 0
+
+mysql> select *from Employee
+    -> ;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from employee 
+    -> order by joining_date asc;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      | manager_id | joining_date |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |       NULL | NULL         |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |       NULL | NULL         |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |       NULL | NULL         |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |       NULL | NULL         |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |       NULL | NULL         |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |       NULL | NULL         |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |       NULL | NULL         |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |       NULL | NULL         |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 | 150000 | asstprofessor    |       NULL | NULL         |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Employee  order by joining_date asc;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> create table department (
+    ->     dept_id int primary key,
+    ->     dname varchar(50) not null
+    -> );
+ERROR 1050 (42S01): Table 'department' already exists
+mysql> create table Department (     dept_id int primary key,     dname varchar(50) not null );
+Query OK, 0 rows affected (0.26 sec)
+
+mysql> alter table employee 
+    -> add constraint fk_dept 
+    -> foreign key (dept_id) 
+    -> references department(dept_id);
+ERROR 1072 (42000): Key column 'dept_id' doesn't exist in table
+mysql> alter table Employee  add constraint fk_dept  foreign key (deptid)  references department(deptid);
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'deptid' for constraint 'fk_dept' in the referenced table 'department'
+mysql> alter table employee  add constraint fk_dept  foreign key (deptid)  references department(deptid);
+ERROR 1072 (42000): Key column 'deptid' doesn't exist in table
+mysql> select * from employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      | manager_id | joining_date |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |       NULL | NULL         |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |       NULL | NULL         |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |       NULL | NULL         |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |       NULL | NULL         |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |       NULL | NULL         |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |       NULL | NULL         |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |       NULL | NULL         |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |       NULL | NULL         |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 | 150000 | asstprofessor    |       NULL | NULL         |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows ^C
+mysql> alter table employee  add constraint fk_dept  foreign key (deptid)  references department(deptid);
+ERROR 1072 (42000): Key column 'deptid' doesn't exist in table
+mysql> alter table Department change dept_id to deptid
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to deptid' at line 1
+mysql> alter table department 
+    -> rename column dept_id to deptid;
+ERROR 1054 (42S22): Unknown column 'dept_id' in 'department'
+mysql> alter table Department  rename column dept_id to deptid;
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee 
+    -> add constraint fk_dept 
+    -> foreign key (dept_id) 
+    -> references department(dept_id);
+ERROR 1072 (42000): Key column 'dept_id' doesn't exist in table
+mysql> alter table Employee  add constraint fk_dept  foreign key (deptid)  references department(deptid);
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'deptid' for constraint 'fk_dept' in the referenced table 'department'
+mysql> select * from employee;
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+| employeenum | employeename | dob        | address                             | mobilenum  | deptnum | salary | designation      | manager_id | joining_date |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+|           1 | vaishnav     | 2001-11-24 | kannampallimekkathil                | 9074162649 |       1 |  45000 | manager          |       NULL | NULL         |
+|           2 | vishnu       | 2001-10-11 | vellachaluvila puthenveedu          | 9023493049 |       2 |   2000 | asstprofessor    |       NULL | NULL         |
+|           3 | john         | 2001-10-12 | asuvbliu                            | 9093745934 |       3 |   1000 | asstprofessor    |       NULL | NULL         |
+|           4 | jishnu       | 2001-10-13 | iauseyr vgyal                       | 9023493045 |       4 |   4000 | asstprofessor    |       NULL | NULL         |
+|           5 | joel         | 2001-10-14 | ueyrtgibvylie                       | 9023493043 |       5 |   5000 | asstprofessor    |       NULL | NULL         |
+|           6 | sidharth     | 2001-10-15 | ioawatvuo                           | 9023493042 |       6 |   6000 | asstprofessor    |       NULL | NULL         |
+|           8 | aravind      | 2001-10-17 | vellachaluvila puthtresvyenveedu    | 9023493053 |       8 |   8000 | asstprofessor    |       NULL | NULL         |
+|           9 | aneesh       | 2001-10-18 | vellachaluvila puthenveeduwaevawt   | 9023493065 |       9 |   9000 | computerassitant |       NULL | NULL         |
+|          10 | rony         | 2001-10-19 | vellachaluvila putaswvtawethenveedu | 9023493086 |      10 | 150000 | asstprofessor    |       NULL | NULL         |
++-------------+--------------+------------+-------------------------------------+------------+---------+--------+------------------+------------+--------------+
+9 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Department;
+Empty set (0.00 sec)
+
+mysql> desc Department
+    -> ;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| deptid | int         | NO   | PRI | NULL    |       |
+| dname  | varchar(50) | NO   |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> alter table Employee  add constraint fk_Department  foreign key (deptid)  references department(deptid);
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'deptid' for constraint 'fk_Department' in the referenced table 'department'
+mysql> alter table Employee  add constraint fk_dname  foreign key (deptid)  references department(deptid);
+ERROR 3734 (HY000): Failed to add the foreign key constraint. Missing column 'deptid' for constraint 'fk_dname' in the referenced table 'department'
+mysql> alter table Employee  add constraint fk_dept  foreign key (deptid)  references Department(deptid);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`24mca51`.`#sql-53e_25`, CONSTRAINT `fk_dept` FOREIGN KEY (`deptid`) REFERENCES `Department` (`deptid`))
+mysql> alter table Employee  add constraint fk_dept^Cforeign key (deptid)  references Department(deptmysql> alter table Employee  add constraint fk_dept  foreign key (deptid)  references Department(deptid);^C
+mysql> insert into department (deptid, dname) values 
+    -> (1, 'DESIGN'),
+    -> (2, 'CODING'),
+    -> (3, 'TESTING'),
+    -> (4, 'RESEARCH');
+ERROR 1054 (42S22): Unknown column 'deptid' in 'field list'
+mysql> insert into Department (deptid, dname) values  (1, 'DESIGN'), (2, 'CODING'), (3, 'TESTING'), (4, 'RESEARCH');
+Query OK, 4 rows affected (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> alter table Employee  add constraint fk_dept  foreign key (deptid)  references Department(deptid);
+Query OK, 8 rows affected (0.78 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> desc department;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| deptnum  | int          | NO   | PRI | NULL    |       |
+| deptname | varchar(250) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> ;
+ERROR: 
+No query specified
+
+mysql> desc Employee;
++--------------+---------------+------+-----+---------+-------+
+| Field        | Type          | Null | Key | Default | Extra |
++--------------+---------------+------+-----+---------+-------+
+| id           | varchar(5)    | YES  |     | NULL    |       |
+| deptid       | int           | YES  | MUL | NULL    |       |
+| name         | varchar(15)   | YES  |     | NULL    |       |
+| designation  | varchar(15)   | YES  |     | NULL    |       |
+| basic        | decimal(10,2) | YES  |     | NULL    |       |
+| gender       | varchar(1)    | YES  |     | NULL    |       |
+| manager_id   | int           | YES  |     | NULL    |       |
+| joining_date | date          | YES  |     | NULL    |       |
++--------------+---------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Department;
++--------+----------+
+| deptid | dname    |
++--------+----------+
+|      1 | DESIGN   |
+|      2 | CODING   |
+|      3 | TESTING  |
+|      4 | RESEARCH |
++--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Employee;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> select employee.name, department.dname 
+    -> from employee 
+    -> join department on employee.deptid = department.deptid;
+ERROR 1054 (42S22): Unknown column 'employee.name' in 'field list'
+mysql> select e.name as emp_name, d.dname as dept_name  from Employee e  inner join department d epdtid = department.deptid;
+[1]+  Stopped                 mysql -u 24mca51 -p
+24mca51@mcaserver:~$ mysql -u 24mca51 -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 55
+Server version: 8.0.40-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> select employee.name, department.dname 
+    -> from employee 
+    -> join department on employee.deptid = department.deptid;
+ERROR 1046 (3D000): No database selected
+mysql> select e.name, d.dname  from Employee e inner join Department d on e.deptid = d.deptid;
+ERROR 1046 (3D000): No database selected
+mysql> use 24mca51;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> select e.name, d.dname  from Employee e inner join Department d on e.deptid = d.deptid;
++---------+----------+
+| name    | dname    |
++---------+----------+
+| ram     | DESIGN   |
+| ruby    | DESIGN   |
+| arun    | CODING   |
+| mridula | CODING   |
+| kiran   | CODING   |
+| mary    | TESTING  |
+| menon   | RESEARCH |
+| tim     | RESEARCH |
++---------+----------+
+8 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> select department.dname 
+    -> from employee 
+    -> join department on employee.deptid = department.deptid
+    -> where employee.name = 'Arun';
+ERROR 1054 (42S22): Unknown column 'department.dname' in 'field list'
+mysql> select d.dname  from Employee  inner join Department d on Employee.deptid = d.deptid where Employee.name = 'Arun';
++--------+
+| dname  |
++--------+
+| CODING |
++--------+
+1 row in set (0.00 sec)
+
+mysql> select department.dname 
+    -> from employee 
+    -> join department on employee.deptid = department.deptid
+    -> where employee.name = 'Arun';
+ERROR 1054 (42S22): Unknown column 'department.dname' in 'field list'
+mysql> select e.basic from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN
+    '> '
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select e.basic from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN';
++---------+
+| basic   |
++---------+
+| 2000.00 |
+| 2010.00 |
++---------+
+2 rows in set (0.00 sec)
+
+mysql> select e.basic e.name from Employee e inner join Department d on d.deptid = e.deptid where dna
+me ='DESIGN';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.name from Employee e inner join Department d on d.deptid = e.deptid where dname' at line 1
+mysql> select e.basic,e.name from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN';
++---------+------+
+| basic   | name |
++---------+------+
+| 2000.00 | ram  |
+| 2010.00 | ruby |
++---------+------+
+2 rows in set (0.01 sec)
+
+mysql> select * from Employee e inner join Department d on d.deptid = e.deptid where dname ='TYPIST'; 
+Empty set (0.00 sec)
+
+mysql> select * from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN'
+and designation ='typist';
++------+--------+------+-------------+---------+--------+------------+--------------+--------+--------+
+| id   | deptid | name | designation | basic   | gender | manager_id | joining_date | deptid | dname  |
++------+--------+------+-------------+---------+--------+------------+--------------+--------+--------+
+| 101  |      1 | ram  | typist      | 2000.00 | m      |       NULL | 2015-06-10   |      1 | DESIGN |
+| 121  |      1 | ruby | typist      | 2010.00 | f      |        101 | 2016-04-20   |      1 | DESIGN |
++------+--------+------+-------------+---------+--------+------------+--------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select e* from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN' and designation ='typist';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Employee e inner join Department d on d.deptid = e.deptid where dname ='DES' at line 1
+mysql> select e.* from Employee e inner join Department d on d.deptid = e.deptid where dname ='DESIGN' and designation ='typist';
++------+--------+------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name | designation | basic   | gender | manager_id | joining_date |
++------+--------+------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram  | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 121  |      1 | ruby | typist      | 2010.00 | f      |        101 | 2016-04-20   |
++------+--------+------+-------------+---------+--------+------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select e.basic,e.name from Employee e inner join Department d on d.deptid = e.deptid where dname ='RESEARCH';
++---------+-------+
+| basic   | name  |
++---------+-------+
+| 1500.00 | menon |
+| 1500.00 | tim   |
++---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select e.name from Employee e inner join Department d on d.deptid = e.deptid where dname ='TESTING' and gender ='f";
+    '> ;
+    '> ;^C
+mysql> select e.name from Employee e inner join Department d on d.deptid = e.deptid where dname ='TESTING' and gender ='f';
++------+
+| name |
++------+
+| mary |
++------+
+1 row in set (0.00 sec)
+
+mysql> select e.* from Employee e inner join Department d on d.deptid = e.deptid where dname !='CODING' or'TESTING';
++------+--------+-------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name  | designation | basic   | gender | manager_id | joining_date |
++------+--------+-------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram   | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 121  |      1 | ruby  | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary  | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 114  |      4 | menon | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim   | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
++------+--------+-------+-------------+---------+--------+------------+--------------+
+5 rows in set, 1 warning (0.00 sec)
+
+mysql> select d.dname from Employee e inner join Department d on d.deptid = e.deptid where max(e.basic);
+ERROR 1111 (HY000): Invalid use of group function
+mysql> select d.dname from Employee e inner join Department d on d.deptid = e.deptid where e.basic is max;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'max' at line 1
+mysql> select d.dname from Employee e inner join Department d on d.deptid = e.deptid where e.basic =(select max(basic) from Employee);
++--------+
+| dname  |
++--------+
+| CODING |
+| CODING |
++--------+
+2 rows in set (0.00 sec)
+
+mysql> select d.dname from Employee e inner join Department d on d.deptid = e.deptid where e.basic =(select count min(basic) from Employee);^C
+mysql> select department.dname 
+    -> from department 
+    -> join employee on department.deptid = employee.deptid 
+    -> group by department.dname 
+    -> having count(employee.id) = (
+    ->     select min(emp_count) 
+    ->     from (select deptid, count(id) as emp_count from employee group by deptid) as dept_counts
+    -> );
+ERROR 1054 (42S22): Unknown column 'department.dname' in 'field list'
+mysql> select d.dname  from Department d join Employee e on d.deptid = e.deptid  group by d.dname  having count(e.id) = (select min(emp_count) from (select deptid, count(id) as emp_count from Employee group by deptid) as dept_counts );
++---------+
+| dname   |
++---------+
+| TESTING |
++---------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) as second_max_salary 
+    -> from employee 
+    -> where salary < (select max(salary) from employee);
++-------------------+
+| second_max_salary |
++-------------------+
+|             45000 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select max(salary) as second_max_salary  from Employee  where salary < (select max(salary) from Employee);
+ERROR 1054 (42S22): Unknown column 'salary' in 'field list'
+mysql> select max(basic) as second_max_salary  from Employee  where basic < (select max(basic) from Employee);
++-------------------+
+| second_max_salary |
++-------------------+
+|           4500.00 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(basic) as second_min_salary  from Employee  where basic < (select min(basic) from Employee);
++-------------------+
+| second_min_salary |
++-------------------+
+|              NULL |
++-------------------+
+1 row in set (0.01 sec)
+
+mysql> select *from Employee;
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| id   | deptid | name    | designation | basic   | gender | manager_id | joining_date |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+| 101  |      1 | ram     | typist      | 2000.00 | m      |       NULL | 2015-06-10   |
+| 102  |      2 | arun    | analyst     | 6000.00 | m      |        101 | 2018-09-15   |
+| 121  |      1 | ruby    | typist      | 2010.00 | f      |        101 | 2016-04-20   |
+| 156  |      3 | mary    | manager     | 4500.00 | f      |        101 | 2019-11-30   |
+| 123  |      2 | mridula | analyst     | 6000.00 | f      |        102 | 2017-07-25   |
+| 114  |      4 | menon   | clerk       | 1500.00 | m      |        102 | 2020-01-10   |
+| 115  |      4 | tim     | clerk       | 1500.00 | m      |        102 | 2021-03-05   |
+| 127  |      2 | kiran   | manager     | 4000.00 | m      |        121 | 2014-12-01   |
++------+--------+---------+-------------+---------+--------+------------+--------------+
+8 rows in set (0.00 sec)
+
+mysql> select min(basic) as second_min_salary  from Employee  where basic < (select min(basic) from Employee);
++-------------------+
+| second_min_salary |
++-------------------+
+|              NULL |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(basic) as second_min_salary  from Employee  where basic > (select min(basic) from Employee);
++-------------------+
+| second_min_salary |
++-------------------+
+|           2000.00 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> select min(basic) as second_min_salary  from Employee  where basic > (select min(basic) from Employee);
++-------------------+
+| second_min_salary |
++-------------------+
+|           2000.00 |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
